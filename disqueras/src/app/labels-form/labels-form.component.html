@@ -1,0 +1,24 @@
+<div class="container">
+
+ <h1 *ngIf="isNew">Nueva disquera</h1>
+ <h1 *ngIf="!isNew">Editar disquera</h1>
+  <form>
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" name="name" class="form-control" id="name_id"  [(ngModel)]="label.name">
+    </div>
+    <div class="form-group">
+        <label for="name">Pais</label>
+        <select name="country" class="form-control" id="country_id" [(ngModel)]="label.country"> 
+            <option value="US">US</option>
+            <option value="Germany">Germany</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label for="name">Año Fundación</label>
+      <input type="number" name="year" class="form-control" id="year_id"  [(ngModel)]="label.year">
+    </div>
+    <button *ngIf="isNew" type="button" class="btn btn-primary" (click)="save()">Agregar</button>
+    <button *ngIf="!isNew" type="button" class="btn btn-primary" (click)="save()">Confirmar</button>
+  </form>
+</div>

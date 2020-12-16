@@ -1,7 +1,12 @@
 <div class="container">
 
-    <h1>Disqueras</h1>
+  <h1>Disqueras</h1>
     <ul class="list-group">
-      <li *ngFor="let label of labels" class="list-group-item">{{label.label_name}}</li>
+      <li *ngFor="let label of labels" class="list-group-item">{{label.name}}
+        <button class="btn btn-primary" (click)="editLabel(label.id)">Editar</button>
+        <button class="btn btn-danger" (click)="deleteLabel(label.id)">Eliminar</button>
+      </li>
     </ul>
-  </div>
+    <a class="btn btn-primary" routerLink="/labels-form">Crear Dsiquera </a>
+    
+</div>

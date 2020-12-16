@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/app'; 
 import "firebase/firestore";
+import {Router} from '@angular/router';
+
+
 
 @Component({
   selector: 'app-labels',
@@ -10,7 +13,7 @@ import "firebase/firestore";
 export class LabelsComponent implements OnInit {
 
   labels = []; 
-  constructor() { }
+  constructor(public router: Router) { }
 
   async ngOnInit() {
     await this.getLabels();
@@ -27,5 +30,14 @@ export class LabelsComponent implements OnInit {
     return labels 
 });
 }
+  async editLabel(id:string){
+    this.router.navigate(["/labels-form"],{queryParams:{id}}); 
 
+  }
+  async deleteLabel(id:string){
+    const db = firebase.firestore(); 
+
+    await db.collection("labels").doc(id).delete(); 
+    this.getLabels(); 
+  }
 }

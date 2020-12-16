@@ -1,0 +1,29 @@
+<div class="container">
+
+     <h1 *ngIf="isNew">Nuevo artista</h1>
+     <h1 *ngIf="!isNew">Editar artista</h1>
+      <form>
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" name="name" class="form-control" id="name_id"  [(ngModel)]="artist.name">
+        </div>
+        <div class="form-group">
+            <label for="name">Pais</label>
+            <select name="country" class="form-control" id="country_id" [(ngModel)]="artist.country"> 
+                <option value="US">US</option>
+                <option value="Germany">Germany</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Género</label>
+            <input type="text" name="genre" class="form-control" id="genre_id"  [(ngModel)]="artist.genre">
+        </div>
+        <div class="form-group">
+            <label for="name">Disquera</label>
+            <input type="text" name="artist-label" class="form-control" id="artist_label_id"  [(ngModel)]="artist.label">
+        </div>
+        <button *ngIf="isNew" type="button" class="btn btn-primary" (click)="save()">Agregar</button>
+        <button *ngIf="!isNew" type="button" class="btn btn-primary" (click)="save()">Confirmar</button>
+      </form>
+    </div>
+    

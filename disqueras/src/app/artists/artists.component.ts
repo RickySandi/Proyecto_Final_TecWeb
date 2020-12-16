@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/app'; 
 import "firebase/firestore";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-artists',
@@ -10,7 +11,7 @@ import "firebase/firestore";
 export class ArtistsComponent implements OnInit {
 
   artists = []; 
-  constructor() { }
+  constructor(public router: Router) { }
 
   async ngOnInit() {
     await this.getArtists();
@@ -27,5 +28,14 @@ export class ArtistsComponent implements OnInit {
     return artists 
 });
 }
+async editArtist(id:string){
+  this.router.navigate(["/artists-form"],{queryParams:{id}}); 
 
+}
+async deleteArtist(id:string){
+  const db = firebase.firestore(); 
+
+  await db.collection("artists").doc(id).delete(); 
+  this.getArtists(); 
+}
 }

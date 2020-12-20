@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/app'; 
 import "firebase/firestore";
 import {Router} from '@angular/router';
+import {ArtistsService} from '../artists.service';
 import {LoginService} from '../login.service'; 
 
 @Component({
@@ -15,34 +16,22 @@ export class ArtistsComponent implements OnInit {
   isLoggedIn = this.loginService.isLoggedIn(); 
   constructor(
     public router: Router,
-    public loginService: LoginService 
+    public loginService: LoginService,
+    public artistsService: ArtistsService 
 
     ) 
     { }
 
   async ngOnInit() {
-    await this.getArtists();
+    this.artists = await this.artistsService.getArtists();
   }
 
-  async getArtists(){
-    const db = firebase.firestore(); 
-
-    this.artists = await db.collection("artists").get().then(function(querySnapshot) {
-    const artists = []; 
-    querySnapshot.forEach(function(doc) {
-        artists.push(doc.data()); 
-    });
-    return artists 
-});
-}
 async editArtist(id:string){
   this.router.navigate(["/artists-form"],{queryParams:{id}}); 
 
 }
 async deleteArtist(id:string){
-  const db = firebase.firestore(); 
-
-  await db.collection("artists").doc(id).delete(); 
-  this.getArtists(); 
+   await this.artistsService.deleteArtist(id); 
+    this.artists = await this.artistsService.getArtists(); 
 }
 }

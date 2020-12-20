@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/app'; 
 import "firebase/firestore";
 import {Router} from '@angular/router';
+import {LabelsService} from '../labels.service';
+import {LoginService} from '../login.service'; 
 
 
 
@@ -12,32 +14,24 @@ import {Router} from '@angular/router';
 })
 export class LabelsComponent implements OnInit {
 
-  labels = []; 
-  constructor(public router: Router) { }
+  labels = [];
+  isLoggedIn = this.loginService.isLoggedIn(); 
+  constructor(
+    public router: Router, 
+    public labelsService: LabelsService,
+    public loginService: LoginService 
+    ) { }
 
   async ngOnInit() {
-    await this.getLabels();
+    this.labels = await this.labelsService.getLabels(); 
+
   }
-
-  async getLabels(){
-    const db = firebase.firestore(); 
-
-    this.labels = await db.collection("labels").get().then(function(querySnapshot) {
-    const labels = []; 
-    querySnapshot.forEach(function(doc) {
-        labels.push(doc.data()); 
-    });
-    return labels 
-});
-}
   async editLabel(id:string){
     this.router.navigate(["/labels-form"],{queryParams:{id}}); 
 
   }
   async deleteLabel(id:string){
-    const db = firebase.firestore(); 
-
-    await db.collection("labels").doc(id).delete(); 
-    this.getLabels(); 
+    await this.labelsService.deleteLabel(id); 
+    this.labels = await this.labelsService.getLabels(); 
   }
 }

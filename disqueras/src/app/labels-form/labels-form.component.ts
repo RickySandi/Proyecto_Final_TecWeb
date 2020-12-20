@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/app';
 import "firebase/firestore";
 import { Router, ActivatedRoute } from '@angular/router';
+import {LabelsService} from '../labels.service';
 
 @Component({
   selector: 'app-labels-form',
@@ -14,10 +15,15 @@ export class LabelsFormComponent implements OnInit {
     id: "",
     name: "",
     country: "",
-    year: ""
+    year: "",
+    artist:[]
   };
   isNew = true;
-  constructor(public router: Router, public route: ActivatedRoute) { }
+  constructor(
+    public router: Router, 
+    public route: ActivatedRoute, 
+    public labelsService: LabelsService
+    ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -31,27 +37,11 @@ export class LabelsFormComponent implements OnInit {
 
   init(id) {
     if (!this.isNew) {
-      this.get(id); 
-
+      this.labelsService.get(id); 
     }
-
   }
-
   async save() {
-    console.log(this.label);
-    const db = firebase.firestore();
-    if (this.isNew) {
-      const id = await db.collection("labels").doc().id;
-      this.label.id = id;
-    }
-    await db.collection("labels").doc(this.label.id).set(this.label);
+    await this.labelsService.save(this.label, this.isNew); 
     this.router.navigate(["/labels"]);
   }
-
-  async get(id){
-    const db = firebase.firestore();
-    this.label = (await db.collection("labels").doc(id).get()).data();  
-
-  }
-
 }

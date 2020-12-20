@@ -1,0 +1,17 @@
+<div class="container">
+
+     <h1>Iniciar Sesión</h1>
+      <form>
+        <div class="form-group">
+          <label for="name">Email</label>
+          <input type="text" name="email" class="form-control" id="name_id"  [(ngModel)]="email">
+        </div>
+        <div class="form-group">
+            <label for="name">Contraseña</label>
+            <input type="password" name="password" class="form-control" id="name_id"  [(ngModel)]="password">
+          </div>
+        <button  type="button" class="btn btn-primary" (click)="login()">Login</button>
+        
+      </form>
+    </div>
+    

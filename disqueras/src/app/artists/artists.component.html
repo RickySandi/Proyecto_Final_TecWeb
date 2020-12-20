@@ -3,9 +3,9 @@
     <h1>Artistas</h1>
     <ul class="list-group">
       <li *ngFor="let artist of artists" class="list-group-item">{{artist.name}}
-        <button class="btn btn-primary" (click)="editArtist(artist.id)">Editar</button>
-        <button class="btn btn-danger" (click)="deleteArtist(artist.id)">Eliminar</button>
+        <button *ngIf='isLoggedIn' class="btn btn-primary" (click)="editArtist(artist.id)">Editar</button>
+        <button *ngIf='isLoggedIn' class="btn btn-danger" (click)="deleteArtist(artist.id)">Eliminar</button>
       </li>
     </ul>
-    <a class="btn btn-primary" routerLink="/artists-form">Crear Artista </a>
+    <a *ngIf='isLoggedIn' class="btn btn-primary" routerLink="/artists-form">Crear Artista </a>
   </div>

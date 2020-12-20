@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/app'; 
 import "firebase/firestore";
 import {Router} from '@angular/router';
+import {LoginService} from '../login.service'; 
 
 @Component({
   selector: 'app-artists',
@@ -10,8 +11,14 @@ import {Router} from '@angular/router';
 })
 export class ArtistsComponent implements OnInit {
 
-  artists = []; 
-  constructor(public router: Router) { }
+  artists = [];
+  isLoggedIn = this.loginService.isLoggedIn(); 
+  constructor(
+    public router: Router,
+    public loginService: LoginService 
+
+    ) 
+    { }
 
   async ngOnInit() {
     await this.getArtists();

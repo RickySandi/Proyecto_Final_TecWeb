@@ -10,6 +10,8 @@ import { ArtistsComponent } from './artists/artists.component';
 import { HomeComponent } from './home/home.component';
 import { LabelsFormComponent } from './labels-form/labels-form.component';
 import { ArtistsFormComponent } from './artists-form/artists-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { LabelsService } from './labels.service'; 
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { ArtistsFormComponent } from './artists-form/artists-form.component';
     ArtistsComponent,
     HomeComponent,
     LabelsFormComponent,
-    ArtistsFormComponent
+    ArtistsFormComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,7 @@ import { ArtistsFormComponent } from './artists-form/artists-form.component';
     CommonModule,
     FormsModule
   ],
-  providers: [],
+  providers: [LabelsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

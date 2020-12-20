@@ -18,8 +18,11 @@ export class ArtistsFormComponent implements OnInit {
     genre: "",
     label: ""
   };
-  isNew = true;
-  constructor(public router: Router, public route: ActivatedRoute) { }
+  isNew = true; 
+  constructor(
+    public router: Router, 
+    public route: ActivatedRoute
+    ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {

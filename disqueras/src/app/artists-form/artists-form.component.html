@@ -15,12 +15,15 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="name">Género</label>
-            <input type="text" name="genre" class="form-control" id="genre_id"  [(ngModel)]="artist.genre">
-        </div>
+          <label for="label">Disquera</label>
+          <select name="label" class="form-control" id="label_id" [(ngModel)]="artist.label"> 
+              <option selected disabled value=''> Seleccionar Disquera</option>
+              <option *ngFor='let label of labels' [value]="label.id">{{label.name}}</option>
+          </select>
+      </div>
         <div class="form-group">
-            <label for="name">Disquera</label>
-            <input type="text" name="artist-label" class="form-control" id="artist_label_id"  [(ngModel)]="artist.label">
+            <label for="name">Género</label>
+            <input type="text" name="genre" class="form-control" id="genre_id" [(ngModel)]="artist.genre">
         </div>
         <button *ngIf="isNew" type="button" class="btn btn-primary" (click)="save()">Agregar</button>
         <button *ngIf="!isNew" type="button" class="btn btn-primary" (click)="save()">Confirmar</button>

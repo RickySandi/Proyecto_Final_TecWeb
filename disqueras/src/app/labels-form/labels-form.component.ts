@@ -35,9 +35,9 @@ export class LabelsFormComponent implements OnInit {
     })
   }
 
-  init(id) {
+  async init(id) {
     if (!this.isNew) {
-      this.labelsService.get(id); 
+      this.label = await this.labelsService.get(id); 
     }
   }
   async save() {

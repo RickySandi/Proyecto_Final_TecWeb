@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase/app';
 import "firebase/firestore";
 import { Router, ActivatedRoute } from '@angular/router';
+import {ArtistsService} from '../artists.service';
+import {LabelsService} from '../labels.service';
 
 @Component({
   selector: 'app-artists-form',
@@ -19,44 +21,35 @@ export class ArtistsFormComponent implements OnInit {
     label: ""
   };
   isNew = true; 
+  labels= []; 
   constructor(
     public router: Router, 
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public artistsService: ArtistsService,
+    public labelsService: LabelsService
     ) {}
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+  async ngOnInit() {
+    this.route.queryParams.subscribe(async params => {
       console.log(params["id"]);
       const id = params["id"];
       this.isNew = (id == undefined);
-      this.init(id);
+      await this.init(id);
       console.log(this.isNew);
     })
   }
 
-  init(id) {
+  async init(id) {
     if (!this.isNew) {
-      this.get(id); 
-
+      this.artist = await this.artistsService.get(id); 
     }
+      this.labels = await this.labelsService.getLabels();
+      console.log(this.labels); 
 
   }
 
   async save() {
-    console.log(this.artist);
-    const db = firebase.firestore();
-    if (this.isNew) {
-      const id = await db.collection("artists").doc().id;
-      this.artist.id = id;
-    }
-    await db.collection("artists").doc(this.artist.id).set(this.artist);
+    await this.artistsService.save(this.artist, this.isNew); 
     this.router.navigate(["/artists"]);
   }
-
-  async get(id){
-    const db = firebase.firestore();
-    this.artist = (await db.collection("artists").doc(id).get()).data();  
-
-  }
-
 }

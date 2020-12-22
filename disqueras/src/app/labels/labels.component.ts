@@ -15,6 +15,7 @@ import {LoginService} from '../login.service';
 export class LabelsComponent implements OnInit {
 
   labels = [];
+   
   isLoggedIn = this.loginService.isLoggedIn(); 
   constructor(
     public router: Router, 
@@ -23,7 +24,9 @@ export class LabelsComponent implements OnInit {
     ) { }
 
   async ngOnInit() {
-    this.labels = await this.labelsService.getLabels(); 
+    this.labels = await this.labelsService.getLabels();
+
+
 
   }
   async editLabel(id:string){
@@ -34,4 +37,9 @@ export class LabelsComponent implements OnInit {
     await this.labelsService.deleteLabel(id); 
     this.labels = await this.labelsService.getLabels(); 
   }
+  // async viewInfo(id:string){
+   
+
+  // }
+
 }

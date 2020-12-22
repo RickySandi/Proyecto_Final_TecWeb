@@ -40,6 +40,15 @@ export class LabelsService {
     return (await db.collection("labels").doc(id).get()).data();  
 
   }
+  async getLabelsDic(){
+    const labels = await this.getLabels();
+    const labelsDic = {};
+
+    labels.forEach(label =>{
+    labelsDic[label.id] = label.name; 
+    });
+    return labelsDic;
+  }
   
   }
 

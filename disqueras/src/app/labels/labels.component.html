@@ -2,9 +2,14 @@
 
   <h1>Disqueras</h1>
     <ul class="list-group">
-      <li *ngFor="let label of labels" class="list-group-item">{{label.name}}
+      <li *ngFor="let label of labels" class="list-group-item">
+        <h6><b>Nombre: </b>{{label.name}}</h6>
+        <!-- <h6><b>Pais: </b>{{label.country}}</h6>
+        <h6><b>Año Fundación: </b>{{label.year}}</h6> -->
+
         <button *ngIf='isLoggedIn' class="btn btn-primary" (click)="editLabel(label.id)">Editar</button>
         <button *ngIf='isLoggedIn' class="btn btn-danger" (click)="deleteLabel(label.id)">Eliminar</button>
+        <button *ngIf='isLoggedIn' class="btn btn-info" (click)="viewInfo(label.id)">Ver más</button>
       </li>
     </ul>
     <a *ngIf='isLoggedIn' class="btn btn-primary" routerLink="/labels-form">Crear Dsiquera </a>

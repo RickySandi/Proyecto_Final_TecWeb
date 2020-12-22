@@ -1,11 +1,24 @@
 <div class="container">
 
-    <h1>Artistas</h1>
-    <ul class="list-group">
-      <li *ngFor="let artist of artists" class="list-group-item">{{artist.name}}
-        <button *ngIf='isLoggedIn' class="btn btn-primary" (click)="editArtist(artist.id)">Editar</button>
-        <button *ngIf='isLoggedIn' class="btn btn-danger" (click)="deleteArtist(artist.id)">Eliminar</button>
+  <h1>Artistas</h1>
+  <ul class="list-group">
+    <li *ngFor="let artist of artists; let i=index;" class="list-group-item">
+      <h6><b>Nombre: </b>{{artist.name}}</h6>
+      <!-- <h6><b>Pais: </b>{{artist.country}}</h6>
+        <h6><b>Género: </b>{{artist.genre}}</h6> -->
+      
+
+      <div class="collapse" [id]="'collapseLabel' + i">
+        <div class="card card-body">
+          <h6><b>Disquera: </b>{{labelsDic[artist.label]}}</h6>
+        </div>
+      </div>
+
+      <button *ngIf='isLoggedIn' class="btn btn-primary" (click)="editArtist(artist.id)">Editar</button>
+      <button *ngIf='isLoggedIn' class="btn btn-danger" (click)="deleteArtist(artist.id)">Eliminar</button>
+      <a class="btn btn-info" data-toggle="collapse" [href]="'#collapseLabel' + i" role="button"
+        aria-expanded="false" aria-controls="collapseExample">Ver más</a> 
       </li>
     </ul>
     <a *ngIf='isLoggedIn' class="btn btn-primary" routerLink="/artists-form">Crear Artista </a>
-  </div>
+</div>

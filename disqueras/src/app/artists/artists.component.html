@@ -1,8 +1,12 @@
 <div class="container">
 
   <h1>Artistas</h1>
+  <div class="form-group">
+
+    <input type="text" class="form-control my-3" (ngModelChange)="filter($event)" [ngModel]="filterInput"  placeholder="Buscar">
+  </div>
   <ul class="list-group">
-    <li *ngFor="let artist of artists; let i=index;" class="list-group-item">
+    <li *ngFor="let artist of filteredArtists; let i=index;" class="list-group-item">
       <h6><b>Nombre: </b>{{artist.name}}</h6>
       <!-- <h6><b>Pais: </b>{{artist.country}}</h6>
         <h6><b>Género: </b>{{artist.genre}}</h6> -->

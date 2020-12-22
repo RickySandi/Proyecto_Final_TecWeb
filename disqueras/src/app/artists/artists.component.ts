@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import firebase from 'firebase/app'; 
+import firebase from 'firebase/app';
 import "firebase/firestore";
-import {Router} from '@angular/router';
-import {ArtistsService} from '../artists.service';
-import {LabelsService} from '../labels.service';
-import {LoginService} from '../login.service'; 
+import { Router } from '@angular/router';
+import { ArtistsService } from '../artists.service';
+import { LabelsService } from '../labels.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-artists',
@@ -14,33 +14,35 @@ import {LoginService} from '../login.service';
 export class ArtistsComponent implements OnInit {
 
   artists = [];
-  labelsDic = {}; 
-  isLoggedIn = this.loginService.isLoggedIn(); 
+  labelsDic = {};
+  isLoggedIn = this.loginService.isLoggedIn();
+  filteredArtists = [];
+  filterInput = "";
   constructor(
     public router: Router,
     public loginService: LoginService,
     public artistsService: ArtistsService,
     public labelsService: LabelsService
 
-    ) 
-    { }
+  ) { }
 
   async ngOnInit() {
     this.artists = await this.artistsService.getArtists();
-    this.labelsDic = await this.labelsService.getLabelsDic(); 
+    this.labelsDic = await this.labelsService.getLabelsDic();
     console.log(this.labelsDic);
+
+    this.filteredArtists = this.artists;
   }
 
-async editArtist(id:string){
-  this.router.navigate(["/artists-form"],{queryParams:{id}}); 
+  async editArtist(id: string) {
+    this.router.navigate(["/artists-form"], { queryParams: { id } });
 
-}
-async deleteArtist(id:string){
-   await this.artistsService.deleteArtist(id); 
-    this.artists = await this.artistsService.getArtists(); 
-}
-  // async viewInfo(id:string){
-   
-
-  // }
+  }
+  async deleteArtist(id: string) {
+    await this.artistsService.deleteArtist(id);
+    this.artists = await this.artistsService.getArtists();
+  }
+  filter(event: any) {
+    this.filteredArtists = this.artists.filter(artist => artist.name.includes(event));
+  }
 }

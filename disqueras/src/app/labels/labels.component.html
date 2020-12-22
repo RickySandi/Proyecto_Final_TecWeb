@@ -5,14 +5,23 @@
     <input type="text" class="form-control my-3" (ngModelChange)="filter($event)" [ngModel]="filterInput"  placeholder="Buscar">
   </div>
     <ul class="list-group">
-      <li *ngFor="let label of filteredLabels" class="list-group-item">
+      <li *ngFor="let label of filteredLabels; let i=index;" class="list-group-item">
         <h6><b>Nombre: </b>{{label.name}}</h6>
         <!-- <h6><b>Pais: </b>{{label.country}}</h6>
         <h6><b>Año Fundación: </b>{{label.year}}</h6> -->
+        <div class="collapse" [id]="'collapseLabel' + i">
+          <div class="card card-body">
+            <h6><b>Artistas: </b></h6>
+              <ul>
+                <li *ngFor="let artist of artistsDic[label.id]">{{artist}}</li>
+              </ul>
+          </div>
+        </div>
 
         <button *ngIf='isLoggedIn' class="btn btn-primary" (click)="editLabel(label.id)">Editar</button>
         <button *ngIf='isLoggedIn' class="btn btn-danger" (click)="deleteLabel(label.id)">Eliminar</button>
-        <button *ngIf='isLoggedIn' class="btn btn-info" (click)="viewInfo(label.id)">Ver más</button>
+        <a class="btn btn-info" data-toggle="collapse" [href]="'#collapseLabel' + i" role="button"
+        aria-expanded="false" aria-controls="collapseExample">Ver más</a> 
       </li>
     </ul>
     <a *ngIf='isLoggedIn' class="btn btn-primary" routerLink="/labels-form">Crear Dsiquera </a>

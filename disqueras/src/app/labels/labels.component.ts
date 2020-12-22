@@ -3,6 +3,7 @@ import firebase from 'firebase/app';
 import "firebase/firestore";
 import {Router} from '@angular/router';
 import {LabelsService} from '../labels.service';
+import {ArtistsService} from '../artists.service';
 import {LoginService} from '../login.service'; 
 
 
@@ -15,6 +16,7 @@ import {LoginService} from '../login.service';
 export class LabelsComponent implements OnInit {
 
   labels = [];
+  artistsDic={};
   isLoggedIn = this.loginService.isLoggedIn();
   filteredLabels = [];
   filterInput = "";
@@ -22,12 +24,16 @@ export class LabelsComponent implements OnInit {
   constructor(
     public router: Router, 
     public labelsService: LabelsService,
-    public loginService: LoginService 
+    public loginService: LoginService ,
+    public artistsService: ArtistsService
     ) { }
 
   async ngOnInit() {
+    this.artistsDic = await this.artistsService.getArtistsDic(); 
     this.labels = await this.labelsService.getLabels();
     this.filteredLabels = this.labels;
+
+    console.log(this.artistsDic);
 
 
 

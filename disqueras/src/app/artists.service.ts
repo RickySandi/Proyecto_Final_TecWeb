@@ -39,5 +39,17 @@ async get(id){
   return (await db.collection("artists").doc(id).get()).data();  
 
 }
+async getArtistsDic(){
+  const artists = await this.getArtists();
+  const artistsDic = {};
+
+  artists.forEach(artist =>{
+    if(!artistsDic.hasOwnProperty(artist.label)){
+      artistsDic[artist.label] = []; 
+    }
+    artistsDic[artist.label].push(artist.name);
+  });
+  return artistsDic;
+}
 
 }

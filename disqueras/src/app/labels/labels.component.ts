@@ -15,8 +15,10 @@ import {LoginService} from '../login.service';
 export class LabelsComponent implements OnInit {
 
   labels = [];
-   
-  isLoggedIn = this.loginService.isLoggedIn(); 
+  isLoggedIn = this.loginService.isLoggedIn();
+  filteredLabels = [];
+  filterInput = "";
+
   constructor(
     public router: Router, 
     public labelsService: LabelsService,
@@ -25,6 +27,7 @@ export class LabelsComponent implements OnInit {
 
   async ngOnInit() {
     this.labels = await this.labelsService.getLabels();
+    this.filteredLabels = this.labels;
 
 
 
@@ -37,9 +40,8 @@ export class LabelsComponent implements OnInit {
     await this.labelsService.deleteLabel(id); 
     this.labels = await this.labelsService.getLabels(); 
   }
-  // async viewInfo(id:string){
-   
-
-  // }
-
+  filter(event: any) {
+    this.filteredLabels = this.labels.filter(label => label.name.includes(event));
+    console.log(this.filteredLabels);
+  }
 }

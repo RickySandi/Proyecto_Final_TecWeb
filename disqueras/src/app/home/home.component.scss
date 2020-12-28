@@ -4,13 +4,13 @@
     color:white;  
 }
 .new-music-2{
-    background-image:url("/assets/green_valley.jpg"); 
+    background-image:url("/assets/extremo_div_2.jpg"); 
     height: 1300px;
     color:white;  
 }
 .new-music-3{
     background-image:url("/assets/green_valley.jpg"); 
-    height: 1300px;
+    height: 1000px;
     color:white;  
 }
 .text{
@@ -19,8 +19,13 @@
     margin-top: 200px;
 }
 
-// iframe {
-//     position: fixed;
-//     bottom: 10px;
-//     right: 10px;
-// }
+.green-valley-iframe {
+    // position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+.extremoduro-iframe {
+    position: absolute;
+    left: 90px;
+    margin-top: 50px;
+}

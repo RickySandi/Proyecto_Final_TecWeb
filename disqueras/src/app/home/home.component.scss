@@ -1,3 +1,13 @@
+.first-div{
+    text-align: center;
+    background-color: #F2F4F4;
+}
+
+
+
+
+
+
 .new-music-1{
     background-image:url("/assets/green_valley.jpg"); 
     height: 1300px;
@@ -8,12 +18,6 @@
     height: 1300px;
     color:white;  
 }
-.new-music-3{
-    background-image:url("/assets/green_valley.jpg"); 
-    height: 1000px;
-    color:white;  
-}
-
 
 .green-valley-iframe {
     position: absolute;
@@ -25,3 +29,49 @@
     left: 90px;
     margin-top: 50px;
 }
+
+
+/* Footer */
+.footer { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .fa:hover {
+      opacity: 0.7;
+  }
+  
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  .fa {
+    padding: 20px;
+    font-size: 40px;
+    width: 80px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+  
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-youtube {
+    background: #bb0000;
+    color: white;
+  }
+  
+  .fa-instagram {
+    background: #125688;
+    color: white;
+  }
+  .datos{
+    text-align: center;
+  }

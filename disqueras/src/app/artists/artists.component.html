@@ -17,9 +17,9 @@
         </div>
       </div>
 
-      <button *ngIf='isLoggedIn' class="btn btn-primary" (click)="editArtist(artist.id)">Editar</button>
-      <button *ngIf='isLoggedIn' class="btn btn-danger" (click)="deleteArtist(artist.id)">Eliminar</button>
-      <a class="btn btn-info" data-toggle="collapse" [href]="'#collapseLabel' + i" role="button"
+      <button *ngIf='isLoggedIn' class="btn btn-primary mx-2" (click)="editArtist(artist.id)">Editar</button>
+      <button *ngIf='isLoggedIn' class="btn btn-danger mx-2" (click)="deleteArtist(artist.id)">Eliminar</button>
+      <a class="btn btn-info mx-2" data-toggle="collapse" [href]="'#collapseLabel' + i" role="button"
         aria-expanded="false" aria-controls="collapseExample">Ver más</a> 
       </li>
     </ul>

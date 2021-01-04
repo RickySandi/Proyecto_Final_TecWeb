@@ -2,12 +2,6 @@
     text-align: center;
     background-color: #F2F4F4;
 }
-
-
-
-
-
-
 .new-music-1{
     background-image:url("/assets/green_valley.jpg"); 
     height: 1300px;
@@ -30,15 +24,17 @@
     margin-top: 50px;
 }
 
-
 // Footer 
 .footer { 
-    background-color: #2f2f2f; /* Black Gray */
-    color: #fff;
+  //background-color: #2f2f2f; /* Black Gray */
+  //color: #fff;
+    background-color: #F2F4F4;
+    color:black;
 
   }
   .footer-text{
     padding: 20px;
+    color: black;
   }
   .fa:hover {
       opacity: 0.7;
@@ -112,7 +108,8 @@ input[type=submit]:hover {
 
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  //background-color: #f2f2f2;
+  background-color: #D5DBDB;
   padding: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
